@@ -24,14 +24,13 @@ public class LockMain {
     }
     //syn代码块
     public static void SynCode_Print(){
-        Object lock = new Object();
         for(int i = 0;i < 10;i++){
             int finalI = i;
             new Thread(new Runnable(){
                 @Override
                 public void run() {
                     for(int j = 0;j < 10;j++)
-                        synchronized (lock){
+                        synchronized (LockMain.class){
                             System.out.println("线程" + finalI + " 调用了" + j + "次");
                         }
                 }
@@ -83,9 +82,9 @@ public class LockMain {
 
     //启动
     public static void main(String[] args) {
-//        LockMain.SynCode_Print();
+        LockMain.SynCode_Print();
 //        LockMain.Non_Print();
 //        LockMain.ReenLock_Print();
-        LockMain.SynDec_Print();
+//        LockMain.SynDec_Print();
     }
 }
